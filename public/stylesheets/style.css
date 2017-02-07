@@ -12,3 +12,7 @@ a {
 #max-wrapper{
 	margin-top: 40px;
 }
+
+.confirmation-area{
+	background-color: yellow;
+}

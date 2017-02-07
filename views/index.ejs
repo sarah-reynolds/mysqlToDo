@@ -19,6 +19,9 @@
 
 <div class="container">
 	<div class="row">
+	<% if(msg) { %>
+		<h4 class="text-center confirmation-area"><%= msg %></h4>
+	<% } %>
 		<h1>Welcome back! Here's your task list:</h1>
 		<form class="form-inline" action="/addNew" method="post">
 			<div class="form-group">
@@ -42,6 +45,8 @@
 					<tr>
 						<td> <%= task.task_name %></td>
 						<td> <%= task.task_date %></td>
+						<td><a href="/edit/<%= task.id %>"><button class="btn btn-warning">Edit</button></a></td>
+						<td><a href="/delete/<%= task.id %>"><button class="btn btn-danger">Delete</button></a></td>
 					</tr>
 				<% }); %>
 			<% } %>
