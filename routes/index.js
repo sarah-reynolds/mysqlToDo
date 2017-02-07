@@ -17,7 +17,10 @@ router.get('/', function(req, res, next) {
 
 	var msg = req.query.msg;
 	if(msg === 'updated'){
-		msg = "Your post has been updated";
+		msg = "Your task has been updated";
+	}
+	if(msg === 'added'){
+		msg = "Your task has been added";
 	}
 	// res.send(msg)
 	// var taskArray = [];
@@ -37,7 +40,7 @@ router.post('/addNew', (req, res, next)=>{
 	// res.send(query);
 	connection.query(insertQuery, (error, results, field)=>{
 		if (error) throw error;
-		res.redirect('/');
+		res.redirect('/?msg=added');
 	});
 });
 
@@ -81,8 +84,13 @@ router.post('/edit/:id', (req, res, next)=>{
 
 //delete get
 router.get('/delete/:id', (req, res, next)=>{
-var selectQuery = "SELECT * FROM tasks WHERE id="+req.params.id;
+var deleteQuery = "DELETE FROM tasks WHERE id="+req.params.id;
+	connection.query(deleteQuery, (error, results, fields)=>{
+		if (error) throw error;
+		res.redirect('/');
+	})
 	// res.send(req.params.id);
+	
 })
 
 // delete post
